@@ -1,0 +1,17 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+<div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+    <form method="POST" enctype="multipart/form-data" class="form-group">
+        {% csrf_token %}
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+        <input class="btn btn-primary" type="submit" value="Send">
+
+    </form>
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
+</div>
+{% endblock %}

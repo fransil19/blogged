@@ -1,0 +1,7 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+    {% for post in posts  %}
+        <li>{{post}}</li>
+    {% endfor %}
+{% endblock %}

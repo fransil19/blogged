@@ -1,0 +1,24 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+   
+  <div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+    <h1 class="text-center">Your Chats</h1>  
+    {% for user in users  %}
+        <div class="card w-75">
+            <div class="card-body">
+              <h3 class="">Your chats with: {{user.username}}</h5>
+              <a href="{% url 'MessagesWith' user.id %}" class="btn btn-primary">Read Messages</a>
+            </div>
+        </div>
+        {% empty %}
+          <h1>There are no messages yet.</h1>
+        {% endfor %}
+        <div>
+          <span>
+            <h2>New message</h2>
+            <a class="btn btn-primary" href="{% url 'NewMessage' %}">New Message</a>
+          </span>
+        </div>  
+  </div>
+{% endblock %}

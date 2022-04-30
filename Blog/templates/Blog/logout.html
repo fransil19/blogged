@@ -1,0 +1,8 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+<div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+    <h1>You've logged out succesfully</h1>
+    <a href="{% url 'Index' %}" class="text-center btn btn-primary ">Return to Home</a>
+</div>
+{% endblock %}

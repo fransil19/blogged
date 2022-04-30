@@ -33,7 +33,10 @@
         <div class="card-body">
           <h3 class="">{{p.title}}</h5>
           <p class="card-text text-truncate">{{p.text}}</p>
-          <p>Created At:{{p.date}}</p><a href="#" class="btn btn-primary">Read post</a>
+          <p>Created At:{{p.date}}</p>
+          <a href="#" class="btn btn-primary">Read post</a>
+          <a class="btn btn-primary" href="{% url 'UpdatePost' p.id %}">Update Post</a>
+          <a class="btn btn-primary" href="{% url 'DeletePost' p.id %}">Delete Post</a>
         </div>
       </div>
     {% endfor %}

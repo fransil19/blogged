@@ -1,0 +1,27 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+    <div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+        {% for message in messages  %}
+        <div class="card w-75">
+            <div class="card-body">
+              <h3 class="">From: {{message.user_from}}</h3>
+              <p>{{message.text}}</p>
+              <p>Sended at: {{message.date}}</p>  
+            </div>
+        </div>
+        {% empty %}
+            <h3 class="text-center">No messages yet</h3>
+        {% endfor %}
+        <h2>Response</h2>
+        <form action="/messages/chat/{{user.id}}/" method="POST" class="form-group">
+            {% csrf_token %}
+            <table class="table">
+                {{formulario.as_table}}
+            </table>
+
+            <input type="submit" value="Send" class="btn btn-primary">
+        </form>
+        <a href="{% url 'Messages' %}" class="btn btn-primary">Return</a>
+    </div>
+{% endblock %}

@@ -22,6 +22,7 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <title>Blogged</title>
 </head>
 
@@ -36,11 +37,21 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="{% url 'Inicio' %}">Home</a></li>
+					<li><a href="{% url 'Index' %}">Home</a></li>
 					<li><a href="{% url 'Posts' %}">Posts</a></li>
-					<li><a href="{% url 'Users' %}">Users</a></li>
-                    <li><a href="{% url 'Comments' %}">Comments</a></li>
-					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+					<li><a href="{% url 'Messages' %}">Messages</a></li>
+                    <li><a href="{% url 'About' %}">About</a></li>
+					{% if not request.user.is_authenticated %}
+					<li><a class="btn" href="{% url 'Login' %}">Sign In/Sign Up</a></li>
+					{% endif %}
+
+					{% if request.user.is_authenticated %}
+						<li ><a href="{% url 'Profile' %}">{{request.user.username}}</a></li>
+						{% if avatar %}
+							<li><img class="rounded" style="height: 50px;" src="{{avatar}}" alt="avatar"></li>
+						{% endif %}
+						<li><a class="btn" href="{% url 'Logout' %}">Log Out</a></li>
+					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -83,25 +94,13 @@
 			<div class="container">
 				<div class="row">
 					
-					<div class="col-md-3 widget">
+					<div class="col-md-6 widget">
 						<h3 class="widget-title">Contact</h3>
 						<div class="widget-body">
-							<p>+234 23 9873237<br>
-								<a href="mailto:#">some.email@somewhere.com</a><br>
+							<p>+54 1166768895<br>
+								<a href="mailto:#">silvestro.franco19@gmail.com</a><br>
 								<br>
-								234 Hidden Pond Road, Ashland City, TN 37015
-							</p>	
-						</div>
-					</div>
-
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Follow me</h3>
-						<div class="widget-body">
-							<p class="follow-me-icons">
-								<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i class="fa fa-dribbble fa-2"></i></a>
-								<a href=""><i class="fa fa-github fa-2"></i></a>
-								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+								Pasaje Gonzalez 37 4/B, Lomas de Zamora (1832), Buenos Aires, Argentina
 							</p>	
 						</div>
 					</div>
@@ -125,11 +124,10 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
-								<a href="about.html">About</a> |
-								<a href="sidebar-right.html">Sidebar</a> |
-								<a href="contact.html">Contact</a> |
-								<b><a href="signup.html">Sign up</a></b>
+								<a href="{% url 'Index' %}">Home</a> | 
+								<a href="about.html">Posts</a> |
+								<a href="sidebar-right.html">Messages</a> |
+								<a href="contact.html">About</a> |
 							</p>
 						</div>
 					</div>
@@ -137,7 +135,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2022, Franco Nicolas Silvestro. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
 							</p>
 						</div>
 					</div>

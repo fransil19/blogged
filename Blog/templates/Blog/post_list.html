@@ -1,0 +1,31 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+   
+  <div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+    <h1 class="text-center">Posts List</h1>
+    {% for post in object_list %}
+    <div class="card w-75">
+        <div class="card-body">
+          <h3 class="">{{post.title}}</h5>
+          <p class="card-text text-truncate">{{post.text}}</p>
+          <p>Created At:{{post.date}}</p>
+          <a href="{% url 'PostDetail' post.id %}" class="btn btn-primary">Read post</a>
+          {% if user.is_superuser  %}
+            <a class="btn btn-primary" href="{% url 'PostEdit' post.id %}">Update Post</a>
+            <a class="btn btn-primary" href="{% url 'PostDelete' post.id %}">Delete Post</a>
+          {% endif %}
+        </div>
+    </div>
+    {% empty %}
+      <h1>There are no posts yet.</h1>
+    {% endfor %}
+    <div>
+      <span>
+        <h2>Create a post</h2>
+        <a class="btn btn-primary" href="{% url 'PostCreate'%}">Create</a>
+      </span>
+      
+    </div>
+  </div>
+{% endblock %}

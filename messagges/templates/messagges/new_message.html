@@ -1,0 +1,16 @@
+{% extends 'Blog/base.html' %}
+
+{% block main_content %}
+    <div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+       <h1 class="text-center">New message</h1>
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <table class="table">
+                {{formulario.as_table}}
+            </table>
+
+            <input type="submit" value="Send" class="btn btn-primary">
+        </form>
+        <a href="{% url 'Messages' %}" class="btn btn-primary">Return</a>
+    </div>
+{% endblock %}
