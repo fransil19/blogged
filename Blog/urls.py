@@ -6,10 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('', index, name='Index'),
-    path('about/', about, name='About'),
-    path('readPosts/', read_posts,name='ReadPosts'),
-    path('deletePost/<post_id>', delete_post, name='DeletePost'),
-    path('updatePost/<post_id>', update_post, name='UpdatePost'),
+    path('about/', about, name='About'),   
     
     path('pages/', PostList.as_view(), name="Posts"),
     path('pages/detail/<pk>', PostDetail.as_view(), name="PostDetail"),

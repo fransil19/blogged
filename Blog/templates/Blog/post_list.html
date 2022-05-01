@@ -2,12 +2,13 @@
 
 {% block main_content %}
    
-  <div class="container mt-5 mb-5 d-flex flex-column justify-content-center">
+  <div class=" container mt-5 mb-5 d-flex flex-column justify-content-center">
     <h1 class="text-center">Posts List</h1>
     {% for post in object_list %}
     <div class="card w-75">
         <div class="card-body">
-          <h3 class="">{{post.title}}</h5>
+          <h3 class="">{{post.title}}</h3>
+          <h5 class="">{{post.subtitle}}</h5>
           <p class="card-text text-truncate">{{post.text}}</p>
           <p>Created At:{{post.date}}</p>
           <a href="{% url 'PostDetail' post.id %}" class="btn btn-primary">Read post</a>
